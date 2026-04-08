@@ -8,7 +8,7 @@ namespace _01_UPD_Client
     internal class Program
     {
         static int port = 4040;
-        static string address = "127.0.0.1";
+        static string address = "127.0.0.1";//IP
         static void Main(string[] args)
         {
             try
