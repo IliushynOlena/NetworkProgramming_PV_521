@@ -13,8 +13,9 @@
                     Click="Send_Button_Click"
                     Background="Bisque">Send</Button>
             <Button DockPanel.Dock="Right" Padding="10" Margin="5"
-                    Click="Join_Button_Click">Join</Button>
-            <Button DockPanel.Dock="Right" Padding="10" Margin="5">Leave</Button>
+                    Click="Connection_Button_Click">Connection</Button>
+            <Button DockPanel.Dock="Right" Padding="10" Margin="5"
+                    Click="Disconnect_Button_Click">Disconnect</Button>
             <TextBox Margin="5" Padding="5" 
                      VerticalContentAlignment="Center"
                      x:Name="msgTextBox"></TextBox>

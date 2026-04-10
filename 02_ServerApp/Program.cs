@@ -7,47 +7,37 @@ namespace _02_ServerApp
     class ChatServer
     {
         const short port = 4040;
+        const string serverAddress = "127.0.0.1";
         const string JOIN_CMD = "$<join>";
         //127.0.0.1
-        UdpClient udpClient ;
-        IPEndPoint remoteEP = null;
-        List<IPEndPoint> members;
+        TcpListener server ;
+      
         public ChatServer()
         {
-             udpClient = new UdpClient(port);
-             members = new List<IPEndPoint>();
+             server = new TcpListener(new IPEndPoint(IPAddress.Parse(serverAddress), port));
+            
         }
-        private void AddMember(IPEndPoint member)
-        {
-            members.Add(remoteEP);
-            Console.WriteLine("Member was added!");
-        }
+       
         public void Start()
         {
+            server.Start();
+            Console.WriteLine("Waiting for connection......");
+            TcpClient client =  server.AcceptTcpClient();
+            Console.WriteLine("Connected!!!");
+            NetworkStream ns= client.GetStream();
+            StreamReader sr = new StreamReader(ns);
+            StreamWriter sw = new StreamWriter(ns);
             while (true)
             {
-                byte[] data = udpClient.Receive(ref remoteEP);
-                string message = Encoding.UTF8.GetString(data);
+
+                string? message = sr.ReadLine();
                 Console.WriteLine($"Got message : {message}." +
-                    $"From : {remoteEP}. Time : {DateTime.Now.ToShortTimeString()}");
-                switch (message)
-                {
-                    case JOIN_CMD:
-                        AddMember(remoteEP);
-                        break;
-                    default:
-                        SendToAllMembers(data);
-                        break;
-                }
+                    $"From : {client.Client.LocalEndPoint}. Time : {DateTime.Now.ToShortTimeString()}");
+               sw.WriteLine("Thanks");
+                sw.Flush();
             }
         }
-        private void SendToAllMembers(byte[] data)
-        {
-            foreach (IPEndPoint member in members)
-            {
-                udpClient.SendAsync(data, data.Length, member);
-            }
-        }
+      
 
     }
     internal class Program

@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -12,16 +13,19 @@ namespace _02_MultyChatUDP_Protocol
     /// </summary>
     public partial class MainWindow : Window
     {
-        UdpClient udpClient;
+        TcpClient tcpClient ;
         IPEndPoint serverEndPoint;
         const string serverAddress = "127.0.0.1";
         const int server_port = 4040;
+        NetworkStream ns = null;
+        StreamReader sr = null;
+        StreamWriter sw = null;
         ObservableCollection<MessageInfo> messages = new ObservableCollection<MessageInfo>();
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = messages;
-            udpClient = new UdpClient();
+            tcpClient = new TcpClient();
             serverEndPoint = new IPEndPoint(IPAddress.Parse(serverAddress), server_port);
         }
 
@@ -31,26 +35,46 @@ namespace _02_MultyChatUDP_Protocol
             SendMessage(message);
         }
 
-        private void Join_Button_Click(object sender, RoutedEventArgs e)
+        private void Connection_Button_Click(object sender, RoutedEventArgs e)
         {
             string message = "$<join>";
-            SendMessage(message);
-            Listen();
+            try
+            {
+                tcpClient.Connect(serverEndPoint);
+                ns = tcpClient.GetStream();
+                sr = new StreamReader(ns);
+                sw = new StreamWriter(ns);
+                SendMessage(message);
+                Listen();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+           
         }
-        private async void SendMessage(string message)
-        {
-            byte[] data = Encoding.UTF8.GetBytes(message);
-            await udpClient.SendAsync(data, data.Length, serverEndPoint);
+        private void SendMessage(string message)
+        {         
+           sw.WriteLine(message);
+           sw.Flush();
+
         }
         private async void Listen()
         {
+         
+            
             while (true)
             {
-                var result = await udpClient.ReceiveAsync();
-                string message = Encoding.UTF8.GetString(result.Buffer);
+                string? message = await sr.ReadLineAsync();              
                 messages.Add(new MessageInfo(message, DateTime.Now));
             }
+        }
 
+        private void Disconnect_Button_Click(object sender, RoutedEventArgs e)
+        {
+            ns.Close();
+            tcpClient.Close();
         }
     }
 
@@ -58,9 +82,9 @@ namespace _02_MultyChatUDP_Protocol
     {
         public string Message { get; set; }
         public DateTime Time { get; set; }
-        public MessageInfo(string Message, DateTime Time)
+        public MessageInfo(string? Message, DateTime Time)
         {
-            this.Message = Message;
+            this.Message = Message ?? "";
             this.Time = Time;
         }
         public override string ToString()
