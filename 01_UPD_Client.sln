@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_MultyChatUDP_Protocol", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_ServerApp", "02_ServerApp\02_ServerApp.csproj", "{281EEE03-AB0E-4F64-8CCE-4D09572AFF33}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03_SMTP_Client", "03_SMTP_Client\03_SMTP_Client.csproj", "{9FD9EECA-0385-4D15-83D8-3C1522969ECD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{281EEE03-AB0E-4F64-8CCE-4D09572AFF33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{281EEE03-AB0E-4F64-8CCE-4D09572AFF33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{281EEE03-AB0E-4F64-8CCE-4D09572AFF33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FD9EECA-0385-4D15-83D8-3C1522969ECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FD9EECA-0385-4D15-83D8-3C1522969ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FD9EECA-0385-4D15-83D8-3C1522969ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FD9EECA-0385-4D15-83D8-3C1522969ECD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
