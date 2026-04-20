@@ -17,9 +17,11 @@ namespace _02_MultyChatUDP_Protocol
         IPEndPoint serverEndPoint;
         const string serverAddress = "127.0.0.1";
         const int server_port = 4040;
+
         NetworkStream ns = null;
         StreamReader sr = null;
         StreamWriter sw = null;
+
         ObservableCollection<MessageInfo> messages = new ObservableCollection<MessageInfo>();
         public MainWindow()
         {
@@ -44,6 +46,7 @@ namespace _02_MultyChatUDP_Protocol
                 ns = tcpClient.GetStream();
                 sr = new StreamReader(ns);
                 sw = new StreamWriter(ns);
+
                 SendMessage(message);
                 Listen();
             }
@@ -61,8 +64,7 @@ namespace _02_MultyChatUDP_Protocol
 
         }
         private async void Listen()
-        {
-         
+        {         
             
             while (true)
             {

@@ -8,16 +8,13 @@ namespace _02_ServerApp
     {
         const short port = 4040;
         const string serverAddress = "127.0.0.1";
-        const string JOIN_CMD = "$<join>";
-        //127.0.0.1
-        TcpListener server ;
-      
+ 
+        TcpListener server ;   
+    
         public ChatServer()
         {
-             server = new TcpListener(new IPEndPoint(IPAddress.Parse(serverAddress), port));
-            
-        }
-       
+             server = new TcpListener(new IPEndPoint(IPAddress.Parse(serverAddress), port));          
+        }       
         public void Start()
         {
             server.Start();
@@ -32,13 +29,12 @@ namespace _02_ServerApp
 
                 string? message = sr.ReadLine();
                 Console.WriteLine($"Got message : {message}." +
-                    $"From : {client.Client.LocalEndPoint}. Time : {DateTime.Now.ToShortTimeString()}");
-               sw.WriteLine("Thanks");
+                    $"From : {client.Client.LocalEndPoint}. Time : " +
+                    $"{DateTime.Now.ToShortTimeString()}");
+                sw.WriteLine("Thanks");
                 sw.Flush();
             }
-        }
-      
-
+        }      
     }
     internal class Program
     {
