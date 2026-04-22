@@ -30,9 +30,11 @@ namespace _03_SMTP_Client
             Login = loginTb.Text;   
             MainWindow mainWindow = new MainWindow(Login);
             //mainWindow.Show();
-            mainWindow.ShowDialog();
+            //mainWindow.ShowDialog();
+            Application.Current.MainWindow = mainWindow; 
+            mainWindow.Show();
 
-            this.Hide();
+            this.Close();
         }
     }
 }
