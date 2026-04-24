@@ -26,8 +26,10 @@
         </Grid>
         <Button DockPanel.Dock="Bottom" Click="Button_Click">Send</Button>
         <TextBox DockPanel.Dock="Top" x:Name="messageTb"></TextBox>
-        <ListBox SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding}">
-           
+        <ListBox SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding Folders}">           
         </ListBox>
+        <ListBox SelectionChanged="ListBox_SelectionChanged_1" ItemsSource="{Binding Messages}">
+        </ListBox>
+
     </DockPanel>
 </Window>

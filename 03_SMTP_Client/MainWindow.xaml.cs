@@ -16,7 +16,7 @@ namespace _03_SMTP_Client
         int port = 587;
         string username = "lenailyshun@gmail.com";
         string password = "hwpmnsbvhaqkgfcd";
-        ObservableCollection<string> messages;
+        ViewModel model;
         //03_SMTP_Client
         public MainWindow()
         {
@@ -30,10 +30,9 @@ namespace _03_SMTP_Client
             InitializeComponent();
             fromTb.Text = login;
             toTb.Text = "teyes23644@mypethealh.com";
-            messages = new ObservableCollection<string>();
-            this.DataContext = messages;
-            messages.Add("Select 1");
-            messages.Add("Select 2");
+            model = new ViewModel();
+            this.DataContext = model;
+          
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -69,7 +68,38 @@ namespace _03_SMTP_Client
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show(sender.ToString());
+            var listBox = sender as ListBox;
+            MessageBox.Show(listBox.SelectedItem?.ToString());
         }
+
+        private void ListBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            var listBox = sender as ListBox;
+            MessageBox.Show(listBox.SelectedItem?.ToString());
+        }
+    }
+
+    class ViewModel
+    {
+        ObservableCollection<string> folders;
+        ObservableCollection<string> messages;
+
+        public ViewModel()
+        {
+            folders = new ObservableCollection<string>();
+
+            messages = new ObservableCollection<string>();
+
+            folders.Add("folder 1");
+            folders.Add("folder 2");
+            folders.Add("folder 3");
+            messages.Add("message 1");
+            messages.Add("message 2");
+            messages.Add("message 3");
+
+        }
+        public IEnumerable<string> Folders => folders;
+        public IEnumerable<string> Messages => messages;
+
     }
 }

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03_SMTP_Client", "03_SMTP_C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04_MailKit_IMAP", "04_MailKit_IMAP\04_MailKit_IMAP.csproj", "{4E504D25-6B15-4C80-BA55-86521E228670}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05_HTPP_Protocol", "05_HTPP_Protocol\05_HTPP_Protocol.csproj", "{4DCA52EF-A79B-41D4-8BA1-68A2FE52553B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{4E504D25-6B15-4C80-BA55-86521E228670}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E504D25-6B15-4C80-BA55-86521E228670}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E504D25-6B15-4C80-BA55-86521E228670}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DCA52EF-A79B-41D4-8BA1-68A2FE52553B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DCA52EF-A79B-41D4-8BA1-68A2FE52553B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DCA52EF-A79B-41D4-8BA1-68A2FE52553B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DCA52EF-A79B-41D4-8BA1-68A2FE52553B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
